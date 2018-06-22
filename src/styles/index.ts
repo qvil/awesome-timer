@@ -4,7 +4,14 @@ export const CardStyle = css`
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-color: white;
   border-radius: ${(props: any) => props.theme.spacing.unit}rem;
-  padding ${(props: any) => props.theme.spacing.gutter}rem;
+  padding ${(props: any) => props.theme.spacing.gutter || props.padding}rem;
+  max-width: 24rem;
+`;
+
+export const FlexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export { default as theme } from "./theme";
