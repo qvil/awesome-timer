@@ -1,10 +1,14 @@
 import * as React from "react";
-// import { CardStyle } from "src/styles";
-// import * as styled from "styled-components";
+import { CardStyle } from "src/styles";
+import styled from "styled-components";
 
-// const CardContainer = styled(div)`
-//   ${CardStyle};
-// `;
+interface ICardContainerInterface {
+  name: string;
+}
+
+const CardContainer = styled<ICardContainerInterface, any>("div")`
+  ${CardStyle};
+`;
 
 export interface ICardProps {
   raised?: boolean;
@@ -12,7 +16,6 @@ export interface ICardProps {
 
 export default class Card extends React.Component<ICardProps, any> {
   public render() {
-    return <div>Card</div>;
-    // return <CardContainer>Card</CardContainer>;
+    return <CardContainer>Card</CardContainer>;
   }
 }
