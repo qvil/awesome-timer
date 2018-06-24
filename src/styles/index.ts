@@ -8,6 +8,10 @@ export const CardStyle = css`
   max-width: 24rem;
 `;
 
+// export const RaisedCardStyle = CardStyle.extend`
+
+// `
+
 export const FlexCenter = css`
   display: flex;
   justify-content: center;

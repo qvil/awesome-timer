@@ -31,9 +31,9 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <AppColumn>
-          <Card fullWidth={true}>fullWidth Card</Card>
-          <Card>Card</Card>
-          <Card>Card</Card>
+          <Card fullWidth={true} color="red" />
+          <Card color="#bbb" />
+          <Card />
         </AppColumn>
       </ThemeProvider>
     );
