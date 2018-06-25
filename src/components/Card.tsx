@@ -16,10 +16,15 @@ const CardContainer = styled<ICardContainerInterface, any>("div")`
   margin: ${(props: any) => props.theme.spacing.unit}rem;
   cursor: pointer;
   background-color: ${props => props.color};
+  ${props =>
+    props.color
+      ? `background-color: ${props.color}`
+      : `background: linear-gradient(45deg, #96f2d7 30%, #12b886 90%)`};
   ${props => (props.raised ? RaisedCardStyle : "")};
 `;
 
 const CardRow = Row.extend`
+  width: 100%;
   ${FlexCenter};
 `;
 
@@ -81,7 +86,6 @@ export default class Card extends React.Component<ICardProps, any> {
     } else {
       this.setState({ raised: false });
     }
-    console.log(name);
   };
 
   private playAudio = () => {

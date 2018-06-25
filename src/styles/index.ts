@@ -7,7 +7,7 @@ export const CardStyle = css`
   background-color: white;
   border-radius: ${(props: any) => props.theme.spacing.unit}rem;
   padding ${(props: any) => props.theme.spacing.gutter || props.padding}rem;
-  max-width: 24rem;
+  max-width: 50rem;
 `;
 
 export const RaisedCardStyle = css`
@@ -16,7 +16,7 @@ export const RaisedCardStyle = css`
     0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   border-radius: ${(props: any) => props.theme.spacing.unit}rem;
   padding ${(props: any) => props.theme.spacing.gutter || props.padding}rem;
-  max-width: 24rem;
+  max-width: 50rem;
 `;
 
 export const FlexCenter = css`
