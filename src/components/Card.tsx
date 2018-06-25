@@ -13,6 +13,7 @@ const CardContainer = styled<ICardContainerInterface, any>("div")`
   ${CardStyle};
   ${FlexCenter};
   flex: ${props => (props.fullWidth ? 1 : 0)};
+  justify-content: space-between;
   margin: ${(props: any) => props.theme.spacing.unit}rem;
   cursor: pointer;
   background-color: ${props => props.color};
@@ -24,6 +25,9 @@ const CardContainer = styled<ICardContainerInterface, any>("div")`
 `;
 
 export interface ICardProps {
+  // icon?: object;
+  icon?: string;
+  title?: string;
   raised?: boolean;
   fullWidth?: boolean;
   color?: string;
@@ -65,8 +69,9 @@ export default class Card extends React.Component<ICardProps, any> {
           onMouseEnter={handleMouse("Enter")}
           onMouseLeave={handleMouse("Leave")}
         >
-          {this.props.children}
-          {this.state.time}
+          <div>{this.props.icon}</div>
+          <div>{this.props.title}</div>
+          <div>{this.state.time}</div>
           <audio
             src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg"
             ref={this.audioRef}

@@ -4,6 +4,7 @@ import { ThemeProvider, injectGlobal } from "styled-components";
 import Card from "src/components/Card";
 import { theme, FlexCenter, CardStyle } from "src/styles";
 import { Column } from "src/components/common";
+import randomColorPicker from "src/lib/randomColorPicker";
 
 // tslint:disable-next-line:no-unused-expression
 injectGlobal`
@@ -30,12 +31,17 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <AppColumn>
-          <Card fullWidth={true} color="red" />
-          <Card fullWidth={true} color="#bbb" />
-          <Card fullWidth={true} />
-          <Card fullWidth={true} color="red" />
-          <Card fullWidth={true} color="#bbb" />
-          <Card fullWidth={true} />
+          <Card
+            icon="명상아이콘"
+            title="5분명상"
+            fullWidth={true}
+            color={randomColorPicker()}
+          />
+          <Card fullWidth={true} color={randomColorPicker()} />
+          <Card fullWidth={true} color={randomColorPicker()} />
+          <Card fullWidth={true} color={randomColorPicker()} />
+          <Card fullWidth={true} color={randomColorPicker()} />
+          <Card fullWidth={true} color={randomColorPicker()} />
         </AppColumn>
       </ThemeProvider>
     );
