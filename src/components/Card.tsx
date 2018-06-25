@@ -29,11 +29,16 @@ export interface ICardProps {
 
 export default class Card extends React.Component<ICardProps, any> {
   public state = {
-    time: 1,
-    timer: 0
+    time: 1
   };
+
   private audioRef: any = React.createRef();
   private audioDOM: any;
+  private timer: any;
+
+  public componentDidMount() {
+    this.audioDOM = ReactDOM.findDOMNode(this.audioRef.current);
+  }
 
   public render() {
     const { startCount, stopCount } = this;
@@ -57,37 +62,24 @@ export default class Card extends React.Component<ICardProps, any> {
   }
 
   private AudioOutput = () => {
-    this.audioDOM = ReactDOM.findDOMNode(this.audioRef.current);
-
     this.audioDOM.play();
   };
 
   private stopCount = (time: number) => {
     if (time <= 0) {
-      clearInterval(this.state.timer);
+      clearInterval(this.timer);
       this.AudioOutput();
     }
   };
 
   private startCount = () => {
-    // private startCount = (time: number) => {
-    const { time, timer } = this.state;
-
-    // this.AudioOutput();
+    const { timer } = this;
+    const { time } = this.state;
 
     if (time > 0) {
-      // this.setState(() => {
-      //   return {
-      //     timer: setInterval(() => {
-      //       this.setState({ time: this.state.time - 1 });
-      //     }, 1000)
-      //   };
-      // }, this.stopCount(this.state.time));
-      this.setState({
-        timer: setInterval(() => {
-          this.setState({ time: this.state.time - 1 });
-        }, 1000)
-      });
+      this.timer = setInterval(() => {
+        this.setState({ time: this.state.time - 1 });
+      }, 1000);
     } else {
       clearInterval(timer);
       return;
