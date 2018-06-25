@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { CardStyle, FlexCenter } from "src/styles";
+import { CardStyle, FlexCenter, RaisedCardStyle } from "src/styles";
 import styled from "styled-components";
 import { Row } from "src/components/common";
 
 interface ICardContainerInterface {
   fullWidth?: boolean;
+  raised?: boolean;
 }
 
 const CardContainer = styled<ICardContainerInterface, any>("div")`
@@ -15,6 +16,7 @@ const CardContainer = styled<ICardContainerInterface, any>("div")`
   margin: ${(props: any) => props.theme.spacing.unit}rem;
   cursor: pointer;
   background-color: ${props => props.color};
+  ${props => (props.raised ? RaisedCardStyle : "")};
 `;
 
 const CardRow = Row.extend`
@@ -28,26 +30,38 @@ export interface ICardProps {
 }
 
 export default class Card extends React.Component<ICardProps, any> {
-  public state = {
-    time: 1
-  };
-
   private audioRef: any = React.createRef();
   private audioDOM: any;
+  private initTime: number = 3;
   private timer: any;
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      raised: false,
+      time: this.initTime
+    };
+  }
+  // public
 
   public componentDidMount() {
     this.audioDOM = ReactDOM.findDOMNode(this.audioRef.current);
   }
 
   public render() {
-    const { startCount, stopCount } = this;
-    const { time } = this.state;
+    const { startCount, stopCount, handleMouse } = this;
+    const { time, raised } = this.state;
 
     stopCount(time);
     return (
       <CardRow>
-        <CardContainer {...this.props} onClick={startCount}>
+        <CardContainer
+          {...this.props}
+          raised={raised}
+          onClick={startCount}
+          onMouseEnter={handleMouse("Enter")}
+          onMouseLeave={handleMouse("Leave")}
+        >
           {this.props.children}
           {this.state.time}
           <audio
@@ -61,14 +75,23 @@ export default class Card extends React.Component<ICardProps, any> {
     );
   }
 
-  private AudioOutput = () => {
+  private handleMouse = (name: string) => () => {
+    if (name === "Enter") {
+      this.setState({ raised: true });
+    } else {
+      this.setState({ raised: false });
+    }
+    console.log(name);
+  };
+
+  private playAudio = () => {
     this.audioDOM.play();
   };
 
   private stopCount = (time: number) => {
     if (time <= 0) {
       clearInterval(this.timer);
-      this.AudioOutput();
+      this.playAudio();
     }
   };
 
