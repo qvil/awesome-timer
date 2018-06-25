@@ -1,9 +1,6 @@
 import { theme } from "src/styles";
 
-// function randomColorPicker(colors: object) {
-function randomColorPicker() {
-  const colors = theme.color;
-
+function randomColorPicker(colors: object = theme.color) {
   const keys = Object.keys(colors);
 
   // tslint:disable-next-line:no-bitwise
