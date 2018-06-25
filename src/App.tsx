@@ -16,14 +16,16 @@ injectGlobal`
   }
   #root {
     flex: 1;
+    flex-direction: column;
     ${FlexCenter};
   }
 `;
 
 const AppColumn = Column.extend`
   padding: ${(props: any) => props.theme.spacing.unit}rem;
-  flex: 1;
   ${FlexCenter};
+  flex: 1;
+  width: 100%;
 `;
 
 class App extends React.Component {
@@ -32,7 +34,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <AppColumn>
           <Card fullWidth={true} color="red" />
-          <Card color="#bbb" />
+          <Card fullWidth={true} color="#bbb" />
           <Card />
         </AppColumn>
       </ThemeProvider>
