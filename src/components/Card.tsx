@@ -23,15 +23,13 @@ const CardContainer = styled<ICardContainerInterface, any>("div")`
   ${props => (props.raised ? RaisedCardStyle : "")};
 `;
 
-const CardRow = Row.extend`
-  width: 100%;
-  ${FlexCenter};
-`;
-
 export interface ICardProps {
   raised?: boolean;
   fullWidth?: boolean;
   color?: string;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 export default class Card extends React.Component<ICardProps, any> {
@@ -59,7 +57,7 @@ export default class Card extends React.Component<ICardProps, any> {
 
     stopCount(time);
     return (
-      <CardRow>
+      <Row>
         <CardContainer
           {...this.props}
           raised={raised}
@@ -76,7 +74,7 @@ export default class Card extends React.Component<ICardProps, any> {
             Your browser does not support the <code>audio</code> element.
           </audio>
         </CardContainer>
-      </CardRow>
+      </Row>
     );
   }
 

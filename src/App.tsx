@@ -11,22 +11,17 @@ injectGlobal`
     padding: 0;
     margin: 0;
     height: 100%;
-    display: flex;
-    flex-direction: column;
   }
   #root {
-    padding: 0;
-    margin: 0;
-    flex: 1;
-    flex-direction: column;
+    height: 100%;
     ${FlexCenter};
   }
 `;
 
 const AppColumn = Column.extend`
-  /* padding: ${(props: any) => props.theme.spacing.unit}rem; */
+  /* margin: ${(props: any) => props.theme.spacing.unit}rem; */
+  flex: 1;
   ${FlexCenter};
-  width: 85%;
   ${CardStyle};
 `;
 
@@ -35,6 +30,9 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <AppColumn>
+          <Card fullWidth={true} color="red" />
+          <Card fullWidth={true} color="#bbb" />
+          <Card fullWidth={true} />
           <Card fullWidth={true} color="red" />
           <Card fullWidth={true} color="#bbb" />
           <Card fullWidth={true} />
